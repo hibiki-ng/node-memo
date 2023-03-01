@@ -5,7 +5,7 @@ let requestOptions = {
   };
 
 function showData() {
-    fetch('http://127.0.0.1:3000/getData', requestOptions)
+    fetch('https://api.hibiki.tech:3000/getData', requestOptions)
   .then(response => response.json())
   .then(data => {
       console.log(data);
@@ -33,7 +33,7 @@ function saveMemo() {
         body: JSON.stringify({ user: user, value: value })
     };
 
-    fetch('http://127.0.0.1:3000/insert', requestOptions);
+    fetch('https://api.hibiki.tech:3000/insert', requestOptions);
 
     setTimeout(() => {
         showData();
@@ -51,7 +51,7 @@ function deleteMemo(value) {
         body: JSON.stringify({ user: user, value: value })
     };
 
-    fetch('http://127.0.0.1:3000/delete', requestOptions);
+    fetch('https://api.hibiki.tech:3000/delete', requestOptions);
 
     setTimeout(() => {
         showData();

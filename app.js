@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const https = require('https');
 const app = express();
 
 const uri = "mongodb+srv://hibiki:test123@cluster0.akkrkpr.mongodb.net/?retryWrites=true&w=majority";
@@ -16,6 +17,8 @@ client.connect(err => {
 
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.urlencoded({extended: true, limit: '3mb'}));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -86,6 +89,5 @@ app.post('/delete', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
+const port = process.env.PORT || 3000;
+https.createServer(options, app).listen(port, console.log(`Listening on port ${port}...`));
