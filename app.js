@@ -26,6 +26,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send('Homepage');
+});
+
 app.post('/insert', (req, res) => {
   const data = req.body;
   console.log(data);
